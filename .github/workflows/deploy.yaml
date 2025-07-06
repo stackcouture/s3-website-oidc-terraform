@@ -1,0 +1,39 @@
+name: Deploy Website via OIDC
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BUCKET_NAME: "s3-website-oidc-terraform"
+  AWS_REGION: "ap-south-1"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3      
+
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsOIDCRole-938320847138
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS Credentials
+        run: |
+          aws sts get-caller-identity
+
+      - name: Sync Website to S3
+        run: aws s3 sync ./oxer-html s3://${{ env.BUCKET_NAME }} --delete --exact-timestamps
+      
+      - name: Print S3 Website URL
+        run: |
+            echo "Website URL: http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com/"
