@@ -53,7 +53,6 @@ Run the following command to initialize the Terraform configuration. This will d
 
 Before applying changes, you can review the execution plan to see which actions Terraform will take. This command will output a summary of what will happen when you apply the configuration, including which resources will be created or modified:
     
-    ```bash
     terraform plan
 
 ## 4. Apply the Terraform plan
@@ -85,7 +84,7 @@ You can find your AWS account ID by navigating to the **AWS Management Console**
 ## GitHub Actions Output
 
 ### Triggering the Action:
-The GitHub Actions workflow will run automatically whenever you push changes to your repository (or based on the trigger you've set, like a push to the `main` branch or a `pull_request`).
+The GitHub Actions workflow will run automatically whenever you push changes to your repository (or based on the trigger you've set, like a push to the `main` branch).
 
 ### Viewing the Output:
 Once the workflow starts running, you can view the progress and output of each step in real-time from within GitHub’s interface.
@@ -108,4 +107,3 @@ GitHub automatically generates logs for every step of the action.
 
 ---
 
-If you encounter any issues or need to debug a specific step, the logs will give you details for troubleshooting.
