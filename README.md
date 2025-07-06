@@ -39,7 +39,6 @@ Make sure you have the following GitHub secrets set up in your repository:
 
 1. Clone this repository:
 
-   ```bash
    git clone https://github.com/stackcouture/s3-hosting-using-oidc-terraform.git
    cd s3-hosting-using-oidc-terraform
 
@@ -47,21 +46,18 @@ Make sure you have the following GitHub secrets set up in your repository:
 
 Run the following command to initialize the Terraform configuration. This will download the necessary provider plugins and prepare Terraform to manage your AWS resources:
 
-    ```bash
     terraform init
 
 ## 3. Review the Terraform plan
 
 Before applying changes, you can review the execution plan to see which actions Terraform will take. This command will output a summary of what will happen when you apply the configuration, including which resources will be created or modified:
    
-```bash
 terraform plan
 
 ## 4. Apply the Terraform plan
 
 Once you're satisfied with the plan, apply it to create the necessary AWS resources (S3 bucket and IAM roles). Terraform will prompt you to confirm before creating the resources. Type yes to proceed:
 
-```bash
 terraform apply
 
 After applying the Terraform configuration, your S3 bucket and IAM roles will be provisioned. The S3 bucket will be configured to host your static website.
